@@ -180,9 +180,11 @@ def assign_composter(
 ):
     if current_user.role != "composter":
         raise HTTPException(status_code=403, detail="Only composters can accept listings")
-    return crud.assign_composter_to_waste_listing(
+    db_waste_listing = crud.assign_composter_to_waste_listing(
         db=db, waste_listing_id=waste_listing_id, composter_id=current_user.id
     )
+    # Convert to dict and back to ensure proper serialization
+    return schemas.WasteListing(**db_waste_listing.__dict__) if db_waste_listing else None
 
 @app.put("/waste-listings/{waste_listing_id}/update-status", response_model=schemas.WasteListing)
 def update_status(

@@ -63,7 +63,8 @@ def assign_composter_to_waste_listing(db: Session, waste_listing_id: int, compos
         db_waste_listing.status = models.WasteListingStatus.PENDING_PICKUP
         db.commit()
         db.refresh(db_waste_listing)
-    return db_waste_listing
+        return db_waste_listing
+    return None
 
 def update_waste_listing_status(db: Session, waste_listing_id: int, status: models.WasteListingStatus):
     db_waste_listing = db.query(models.WasteListing).filter(models.WasteListing.id == waste_listing_id).first()
