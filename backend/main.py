@@ -1,6 +1,11 @@
 import sys
 import os
-import razorpay
+try:
+    import razorpay
+    RAZORPAY_AVAILABLE = True
+except ImportError:
+    RAZORPAY_AVAILABLE = False
+    print("Razorpay not available, continuing without payment functionality")
 from dotenv import load_dotenv
 from pydantic import BaseModel
 
@@ -38,6 +43,19 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+
+# Initialize Razorpay client only if available
+razorpay_client = None
+if RAZORPAY_AVAILABLE:
+    try:
+        razorpay_client = razorpay.Client(
+            auth=(os.getenv("RAZORPAY_KEY_ID"), os.getenv("RAZORPAY_KEY_SECRET"))
+        )
+    except Exception as e:
+        print(f"Error initializing Razorpay client: {e}")
+        razorpay_client = None
+else:
+    print("Razorpay not available, payment functionality disabled")
 
 # Initialize Razorpay client
 try:
