@@ -33,7 +33,7 @@ frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
 origins = [
     "http://localhost:5173",
     "http://localhost:3000",
-    "https://swacchxyz.netlify.app",
+    "https://swacchsetu.netlify.app",
     frontend_url,  # For deployed frontend
 ]
 
