@@ -133,7 +133,21 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
 
 @app.get("/users/me/", response_model=schemas.User)
 async def read_users_me(current_user: schemas.User = Depends(auth.get_current_user)):
-    return current_user
+    # Convert the user object to a dictionary explicitly
+    user_dict = {
+        "id": current_user.id,
+        "email": current_user.email,
+        "role": current_user.role,
+        "is_active": current_user.is_active,
+        "location": current_user.location,
+        "address": current_user.address,
+        "city": current_user.city,
+        "state": current_user.state,
+        "country": current_user.country,
+        "latitude": current_user.latitude,
+        "longitude": current_user.longitude
+    }
+    return user_dict
 
 @app.post("/waste-listings/", response_model=schemas.WasteListing)
 def create_waste_listing(
