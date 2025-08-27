@@ -17,7 +17,7 @@ const ProtectedRoute = ({ children, roles }) => {
     return <Navigate to="/login" replace />;
   }
 
-  if (roles && !roles.includes(user.role)) {
+  if (roles && (!user || !roles.includes(user.role))) {
     // Redirect to the appropriate dashboard based on user role
     const roleDashboards = {
       household: '/household-dashboard',
@@ -26,7 +26,7 @@ const ProtectedRoute = ({ children, roles }) => {
       buyer: '/farmer-dashboard'
     };
     
-    const dashboardPath = roleDashboards[user.role] || '/dashboard';
+    const dashboardPath = user ? roleDashboards[user.role] : '/login';
     return <Navigate to={dashboardPath} replace />;
   }
 
