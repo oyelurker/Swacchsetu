@@ -156,9 +156,11 @@ def create_waste_listing(
     db: Session = Depends(get_db),
     current_user: schemas.User = Depends(auth.get_current_user),
 ):
-    return crud.create_waste_listing(
+    db_waste_listing = crud.create_waste_listing(
         db=db, waste_listing=waste_listing, owner_id=current_user.id
     )
+    # Convert to dict and back to ensure proper serialization
+    return schemas.WasteListing(**db_waste_listing.__dict__)
 
 @app.get("/waste-listings/", response_model=list[schemas.WasteListing])
 def read_waste_listings(
