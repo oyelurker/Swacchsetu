@@ -57,15 +57,6 @@ if RAZORPAY_AVAILABLE:
 else:
     print("Razorpay not available, payment functionality disabled")
 
-# Initialize Razorpay client
-try:
-    razorpay_client = razorpay.Client(
-        auth=(os.getenv("RAZORPAY_KEY_ID"), os.getenv("RAZORPAY_KEY_SECRET"))
-    )
-except Exception as e:
-    print(f"Error initializing Razorpay client: {e}")
-    razorpay_client = None
-
 class RazorpayOrderRequest(BaseModel):
     amount: int
     currency: str = "INR"
@@ -77,8 +68,8 @@ class PaymentVerificationRequest(BaseModel):
 
 @app.post("/create-razorpay-order")
 def create_razorpay_order(order_request: RazorpayOrderRequest, db: Session = Depends(get_db)):
-    if not razorpay_client:
-        raise HTTPException(status_code=500, detail="Razorpay client not initialized")
+    if not RAZORPAY_AVAILABLE or not razorpay_client:
+        raise HTTPException(status_code=500, detail="Payment functionality not available")
     try:
         order_amount = order_request.amount * 100  # Amount in paise
         order_currency = order_request.currency
@@ -96,8 +87,8 @@ def create_razorpay_order(order_request: RazorpayOrderRequest, db: Session = Dep
 
 @app.post("/verify-payment")
 def verify_payment(verification_request: PaymentVerificationRequest):
-    if not razorpay_client:
-        raise HTTPException(status_code=500, detail="Razorpay client not initialized")
+    if not RAZORPAY_AVAILABLE or not razorpay_client:
+        raise HTTPException(status_code=500, detail="Payment functionality not available")
     try:
         params_dict = {
             'razorpay_order_id': verification_request.razorpay_order_id,
