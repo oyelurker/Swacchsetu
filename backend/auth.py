@@ -39,6 +39,7 @@ def create_access_token(data: dict, expires_delta: timedelta | None = None):
     return encoded_jwt
 
 def get_current_user(db: Session = Depends(get_db), token: str = Depends(oauth2_scheme)):
+    print(f"Token received: {token}")
     credentials_exception = HTTPException(
         status_code=status.HTTP_401_UNAUTHORIZED,
         detail="Could not validate credentials",
@@ -46,16 +47,20 @@ def get_current_user(db: Session = Depends(get_db), token: str = Depends(oauth2_
     )
     try:
         payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        print(f"Payload decoded: {payload}")
         email: str = payload.get("sub")
         role: str = payload.get("role")
         if email is None:
             raise credentials_exception
         token_data = schemas.TokenData(email=email, role=role)
-    except JWTError:
+    except JWTError as e:
+        print(f"JWT Error: {e}")
         raise credentials_exception
     user = crud.get_user_by_email(db, email=token_data.email)
+    print(f"User found: {user}")
     if user is None:
         raise credentials_exception
     # Add the role to the user object
     user.role = token_data.role
+    print(f"Returning user: {user}")
     return user
