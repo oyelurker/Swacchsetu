@@ -72,7 +72,8 @@ def update_waste_listing_status(db: Session, waste_listing_id: int, status: mode
         db_waste_listing.status = status
         db.commit()
         db.refresh(db_waste_listing)
-    return db_waste_listing
+        return db_waste_listing
+    return None
 
 def get_household_stats(db: Session, user_id: int):
     total_listings = db.query(models.WasteListing).filter(models.WasteListing.owner_id == user_id).count()

@@ -194,9 +194,11 @@ def update_status(
     current_user: schemas.User = Depends(auth.get_current_user),
 ):
     # Add authorization logic here to ensure only authorized users can update the status
-    return crud.update_waste_listing_status(
+    db_waste_listing = crud.update_waste_listing_status(
         db=db, waste_listing_id=waste_listing_id, status=status
     )
+    # Convert to dict and back to ensure proper serialization
+    return schemas.WasteListing(**db_waste_listing.__dict__) if db_waste_listing else None
 
 @app.get("/users/me/household-stats")
 def get_household_stats(
