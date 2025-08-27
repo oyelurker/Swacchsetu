@@ -43,7 +43,8 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-    expose_headers=["Access-Control-Allow-Origin"]
+    expose_headers=["Access-Control-Allow-Origin"],
+    allow_origin_regex="https://.*\.netlify\.app",
 )
 
 # Initialize Razorpay client only if available
