@@ -43,9 +43,19 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
-    expose_headers=["Access-Control-Allow-Origin"],
+    expose_headers=["Access-Control-Allow-Origin", "Authorization"],
     allow_origin_regex="https://.*\\.netlify\\.app",
 )
+
+# Custom middleware to ensure CORS headers are set on all responses
+@app.middleware("http")
+async def add_cors_headers(request: Request, call_next):
+    response = await call_next(request)
+    response.headers["Access-Control-Allow-Origin"] = request.headers.get("origin", "*")
+    response.headers["Access-Control-Allow-Credentials"] = "true"
+    response.headers["Access-Control-Allow-Methods"] = "*"
+    response.headers["Access-Control-Allow-Headers"] = "*"
+    return response
 
 # Initialize Razorpay client only if available
 razorpay_client = None
