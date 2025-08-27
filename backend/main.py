@@ -133,7 +133,6 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
 
 @app.get("/users/me/", response_model=schemas.User)
 async def read_users_me(current_user: schemas.User = Depends(auth.get_current_user)):
-    print(f"Current user: {current_user}")
     return current_user
 
 @app.post("/waste-listings/", response_model=schemas.WasteListing)
