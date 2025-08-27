@@ -169,7 +169,8 @@ def read_waste_listings(
     db: Session = Depends(get_db),
 ):
     waste_listings = crud.get_waste_listings(db, skip=skip, limit=limit)
-    return waste_listings
+    # Convert to dict and back to ensure proper serialization
+    return [schemas.WasteListing(**wl.__dict__) for wl in waste_listings]
 
 @app.put("/waste-listings/{waste_listing_id}/assign-composter", response_model=schemas.WasteListing)
 def assign_composter(
