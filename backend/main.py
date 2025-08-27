@@ -32,7 +32,8 @@ frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
 origins = [
     "http://localhost:5173",
-    "http://localhost:3000",  # In case you use a different port
+    "http://localhost:3000",
+    "https://swacchxyz.netlify.app",
     frontend_url,  # For deployed frontend
 ]
 
@@ -42,6 +43,7 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["Access-Control-Allow-Origin"]
 )
 
 # Initialize Razorpay client only if available
