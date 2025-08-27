@@ -3,8 +3,4 @@ builder = "nixpacks"
 
 [deploy]
 startCommand = "cd backend && python ../init_db_railway.py && uvicorn main:app --host 0.0.0.0 --port $PORT"
-<<<<<<< HEAD
 restartPolicyType = "never"
-=======
-restartPolicyType = "never"
->>>>>>> 7ef7e553bc4637d9ce2921ce4dbe8b5af52159a0
