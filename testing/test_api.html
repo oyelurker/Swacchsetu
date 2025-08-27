@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>API Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <h1>API Test</h1>
+    <button onclick="testLogin()">Test Login</button>
+    <div id="result"></div>
+
+    <script>
+        const api = axios.create({
+            baseURL: 'http://localhost:8000',
+        });
+
+        async function testLogin() {
+            try {
+                // First, let's try to login with a known user
+                document.getElementById('result').innerHTML = 'Testing login with comprehensive_test1@example.com...';
+                const response = await api.post('/token', 
+                    new URLSearchParams({
+                        username: 'comprehensive_test1@example.com',
+                        password: 'comprehensive_password1',
+                    }),
+                    {
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded',
+                        },
+                    }
+                );
+                
+                document.getElementById('result').innerHTML += '<br>Login response: ' + JSON.stringify(response.data);
+                
+                // Extract the token
+                const { access_token } = response.data;
+                
+                // Now let's try to access the /users/me endpoint
+                document.getElementById('result').innerHTML += '<br>Testing access to /users/me...';
+                const userResponse = await api.get('/users/me/', {
+                    headers: {
+                        'Authorization': `Bearer ${access_token}`,
+                    },
+                });
+                
+                document.getElementById('result').innerHTML += '<br>User response: ' + JSON.stringify(userResponse.data);
+            } catch (error) {
+                document.getElementById('result').innerHTML += '<br>Error: ' + (error.response ? JSON.stringify(error.response.data) : error.message);
+                console.error('Error:', error);
+            }
+        }
+    </script>
+</body>
+</html>

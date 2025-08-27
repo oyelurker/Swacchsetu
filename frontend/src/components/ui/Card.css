@@ -1,0 +1,156 @@
+/* Card Component Styles */
+@import '../../styles/modern.css';
+
+.card {
+  background-color: var(--card);
+  color: var(--card-foreground);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  overflow: hidden;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.card-header {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-4);
+}
+
+.card-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin-bottom: var(--spacing-2);
+  color: var(--foreground);
+}
+
+.card-description {
+  font-size: var(--font-size-sm);
+  color: var(--muted-foreground);
+}
+
+.card-content {
+  padding: var(--spacing-4);
+  flex: 1 1 auto;
+}
+
+.card-footer {
+  padding: var(--spacing-4);
+  border-top: 1px solid var(--border);
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-2);
+}
+
+.card-action {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+}
+
+/* Card Variants */
+.card-primary {
+  border-top: 4px solid var(--primary);
+}
+
+.card-secondary {
+  border-top: 4px solid var(--secondary);
+}
+
+.card-success {
+  border-top: 4px solid var(--success);
+}
+
+.card-warning {
+  border-top: 4px solid var(--warning);
+}
+
+.card-error {
+  border-top: 4px solid var(--error);
+}
+
+.card-info {
+  border-top: 4px solid var(--info);
+}
+
+/* Card Sizes */
+.card-sm {
+  max-width: 300px;
+}
+
+.card-md {
+  max-width: 500px;
+}
+
+.card-lg {
+  max-width: 800px;
+}
+
+.card-full {
+  width: 100%;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+  .card-header,
+  .card-content,
+  .card-footer {
+    padding: var(--spacing-3);
+  }
+  
+  .card-title {
+    font-size: var(--font-size-base);
+  }
+  
+  .card-description {
+    font-size: var(--font-size-xs);
+  }
+}
+
+/* Card Grid Layout */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  gap: var(--spacing-4);
+}
+
+@media (min-width: 640px) {
+  .card-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .card-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .card-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+/* Interactive Cards */
+.card-interactive {
+  cursor: pointer;
+}
+
+.card-interactive:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+
+.card-interactive:active {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}

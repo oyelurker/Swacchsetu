@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Razorpay Comprehensive Test</title>
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 0 auto; padding: 20px; }
+        button { padding: 10px 20px; margin: 10px; font-size: 16px; }
+        .test-card { border: 1px solid #ddd; padding: 15px; margin: 10px 0; border-radius: 5px; }
+        .error { color: red; }
+        .success { color: green; }
+    </style>
+</head>
+<body>
+    <h1>Razorpay Comprehensive Test</h1>
+    
+    <div>
+        <h2>Test Different Payment Methods</h2>
+        <button id="testCard">Test Card Payment</button>
+        <button id="testNetbanking">Test Netbanking</button>
+        <button id="testUpi">Test UPI</button>
+    </div>
+    
+    <div id="result"></div>
+    
+    <div class="test-card">
+        <h3>Indian Test Cards</h3>
+        <p><strong>Rupay:</strong> 6010 0000 0000 0007 | 12/25 | 123</p>
+        <p><strong>Mastercard:</strong> 5264 3000 0000 0001 | 12/25 | 123</p>
+        <p><strong>OTP for cards:</strong> 123456</p>
+    </div>
+    
+    <div class="test-card">
+        <h3>Netbanking Test</h3>
+        <p>Select any bank and use username/password: <strong>test/test</strong></p>
+    </div>
+
+    <script>
+        const displayResult = (message, isError = false) => {
+            document.getElementById('result').innerHTML = 
+                `<p class="${isError ? 'error' : 'success'}">${message}</p>`;
+        };
+        
+        const createOrderAndPay = (paymentMethod) => {
+            displayResult(`Creating order for ${paymentMethod} payment...`);
+            
+            // Create order
+            fetch('http://localhost:8000/create-razorpay-order', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    amount: 25,
+                    currency: 'INR'
+                })
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                return response.json();
+            })
+            .then(orderData => {
+                displayResult(`Order created: ${orderData.order_id}. Opening payment dialog...`);
+                console.log('Order created:', orderData);
+                
+                var options = {
+                    "key": "rzp_test_R9QZrQ2x9aV8Ck",
+                    "amount": orderData.amount,
+                    "currency": orderData.currency,
+                    "name": "SwacchSetu Test",
+                    "description": `Test ${paymentMethod} Payment`,
+                    "order_id": orderData.order_id,
+                    "handler": function (response){
+                        displayResult('Payment successful! ' + JSON.stringify(response));
+                        console.log('Payment successful:', response);
+                    },
+                    "prefill": {
+                        "name": "Test User",
+                        "email": "test@example.com",
+                        "contact": "9876543210"
+                    },
+                    "theme": {
+                        "color": "#3399cc"
+                    },
+                    "modal": {
+                        "ondismiss": function() {
+                            displayResult('Payment dialog closed by user');
+                        }
+                    }
+                };
+                
+                var rzp1 = new Razorpay(options);
+                rzp1.on('payment.failed', function (response){
+                    let errorMessage = 'Payment failed';
+                    if (response.error) {
+                        errorMessage += `: ${response.error.description || response.error.reason || 'Unknown error'}`;
+                        console.error('Payment error details:', response.error);
+                    }
+                    displayResult(errorMessage, true);
+                    console.error('Payment failed:', response);
+                });
+                rzp1.open();
+            })
+            .catch(error => {
+                console.error('Error creating order:', error);
+                displayResult(`Error creating order: ${error.message}`, true);
+            });
+        };
+        
+        document.getElementById('testCard').onclick = () => createOrderAndPay('Card');
+        document.getElementById('testNetbanking').onclick = () => createOrderAndPay('Netbanking');
+        document.getElementById('testUpi').onclick = () => createOrderAndPay('UPI');
+    </script>
+</body>
+</html>
