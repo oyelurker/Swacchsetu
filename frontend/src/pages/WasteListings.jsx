@@ -31,7 +31,7 @@ const WasteListings = () => {
       let filteredListings = response.data;
       
       if (user) {
-        if (user.role === 'household' || user.role === 'business') {
+        if (user && (user.role === 'household' || user.role === 'business')) {
           // Household and business users only see their own listings
           filteredListings = response.data.filter(listing => listing.owner_id === user.id);
         }
@@ -169,11 +169,11 @@ const WasteListings = () => {
           <p style={{ color: 'var(--muted-foreground)' }}>
             {searchTerm 
               ? 'Try adjusting your search terms' 
-              : user.role === 'composter'
+              : user && user.role === 'composter'
                 ? 'There are currently no waste listings available'
                 : 'You haven\'t created any waste listings yet'}
           </p>
-          {(user.role === 'household' || user.role === 'business') && !searchTerm && (
+          {(user && (user.role === 'household' || user.role === 'business')) && !searchTerm && (
             <div style={{ marginTop: '1rem' }}>
               <a href="/create-waste-listing" className="btn btn-default">
                 Create Your First Waste Listing
@@ -283,7 +283,7 @@ const WasteListings = () => {
                 paddingTop: '1rem',
                 borderTop: '1px solid var(--border)'
               }}>
-                {user.role === 'composter' && listing.status === 'available' && (
+                {user && user.role === 'composter' && listing.status === 'available' && (
                   <button
                     onClick={() => handleAcceptListing(listing.id)}
                     className="btn btn-default"
@@ -300,7 +300,7 @@ const WasteListings = () => {
                   </button>
                 )}
                 
-                {user.role === 'composter' && listing.status === 'pending_pickup' && (
+                {user && user.role === 'composter' && listing.status === 'pending_pickup' && (
                   <>
                     <button
                       onClick={() => handleUpdateStatus(listing.id, 'completed')}
@@ -333,7 +333,7 @@ const WasteListings = () => {
                   </>
                 )}
                 
-                {(user.role === 'household' || user.role === 'business') && 
+                {user && (user.role === 'household' || user.role === 'business') && 
                  listing.status === 'available' && (
                   <button
                     onClick={() => handleFindComposter(listing.id)}

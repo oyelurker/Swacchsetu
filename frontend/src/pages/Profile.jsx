@@ -39,7 +39,7 @@ const Profile = () => {
     }
   };
 
-  const userRoleConfig = roleConfig[user.role] || roleConfig.household;
+  const userRoleConfig = user && roleConfig[user.role] || roleConfig.household;
 
   return (
     <div className="container">
@@ -175,7 +175,7 @@ const Profile = () => {
                 margin: '0.5rem 0 0 0',
                 textTransform: 'capitalize'
               }}>
-                {user.role}
+                {user && user.role}
               </p>
               <p style={{
                 color: 'var(--muted-foreground)',

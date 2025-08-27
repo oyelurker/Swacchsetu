@@ -123,7 +123,7 @@ const ModernHeader = () => {
             <ul className="nav-links flex gap-8" role="menubar">
               <li role="none">
                 <Link 
-                  to={getUserDashboardLink(user.role)} 
+                  to={user ? getUserDashboardLink(user.role) : '/'} 
                   onClick={closeMobileMenu} 
                   role="menuitem" 
                   tabIndex="0"
@@ -132,7 +132,7 @@ const ModernHeader = () => {
                   Dashboard
                 </Link>
               </li>
-              {getRoleSpecificLinks(user.role).map((link, index) => (
+              {user && getRoleSpecificLinks(user.role).map((link, index) => (
                 <li key={index} role="none">
                   <Link 
                     to={link.href} 
@@ -188,10 +188,10 @@ const ModernHeader = () => {
             <div className="nav-auth flex items-center gap-4">
               <div className="flex items-center gap-3 bg-card p-2 rounded-full border border-border shadow-sm">
                 <div className="p-2 rounded-full bg-gradient-primary">
-                  {getRoleIcon(user.role)}
+                  {user && getRoleIcon(user.role)}
                 </div>
                 <span className="text-sm font-medium capitalize">
-                  {user.role === 'buyer' ? 'Buyer' : user.role}
+                  {user && (user.role === 'buyer' ? 'Buyer' : user.role)}
                 </span>
               </div>
               <button 
@@ -234,7 +234,7 @@ const ModernHeader = () => {
             <>
               <nav className="nav-mobile-links space-y-3 py-4" aria-label="Mobile Navigation">
                 <Link 
-                  to={getUserDashboardLink(user.role)} 
+                  to={user ? getUserDashboardLink(user.role) : '/'} 
                   onClick={closeMobileMenu}
                   tabIndex="0"
                   role="menuitem"
@@ -242,7 +242,7 @@ const ModernHeader = () => {
                 >
                   Dashboard
                 </Link>
-                {getRoleSpecificLinks(user.role).map((link, index) => (
+                {user && getRoleSpecificLinks(user.role).map((link, index) => (
                   <Link 
                     key={index} 
                     to={link.href} 
@@ -262,13 +262,13 @@ const ModernHeader = () => {
                 <div className="py-3 border-b border-border">
                   <div className="flex items-center gap-3 mb-2">
                     <div className="p-2 rounded-full bg-gradient-primary">
-                      {getRoleIcon(user.role)}
+                      {user && getRoleIcon(user.role)}
                     </div>
                     <span className="text-sm font-medium capitalize">
-                      {user.role === 'buyer' ? 'Buyer' : user.role}
+                      {user && (user.role === 'buyer' ? 'Buyer' : user.role)}
                     </span>
                   </div>
-                  <span className="text-sm">Welcome, {user.email}</span>
+                  <span className="text-sm">Welcome, {user?.email || 'Guest'}</span>
                 </div>
                 <button 
                   onClick={() => { logout(); closeMobileMenu(); }}

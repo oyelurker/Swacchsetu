@@ -120,8 +120,8 @@ const Header = () => {
         <nav aria-label="Main Navigation">
           {isAuthenticated && user ? (
             <ul className="nav-links-desktop" role="menubar">
-              <li role="none"><Link to={getUserDashboardLink(user.role)} onClick={closeMobileMenu} role="menuitem" tabIndex="0">Dashboard</Link></li>
-              {getRoleSpecificLinks(user.role).map((link, index) => (
+              <li role="none"><Link to={user ? getUserDashboardLink(user.role) : '/'} onClick={closeMobileMenu} role="menuitem" tabIndex="0">Dashboard</Link></li>
+              {user && getRoleSpecificLinks(user.role).map((link, index) => (
                 <li key={index} role="none"><Link to={link.href} onClick={closeMobileMenu} role="menuitem" tabIndex="0">{link.name}</Link></li>
               ))}
             </ul>
@@ -139,9 +139,9 @@ const Header = () => {
           {isAuthenticated && user ? (
             <div className="nav-auth-desktop">
               <div className="flex items-center gap-2 mr-4 bg-muted p-1 rounded-md">
-                {getRoleIcon(user.role)}
+                {user && getRoleIcon(user.role)}
                 <span className="text-sm capitalize">
-                  {user.role === 'buyer' ? 'Buyer' : user.role}
+                  {user && (user.role === 'buyer' ? 'Buyer' : user.role)}
                 </span>
               </div>
               <button 

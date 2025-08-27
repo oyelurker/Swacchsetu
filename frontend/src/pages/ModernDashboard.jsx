@@ -28,7 +28,7 @@ const ModernDashboard = () => {
   const getDashboardLinks = () => {
     const links = [];
     
-    if (user.role === 'household') {
+    if (user && user.role === 'household') {
       links.push({ 
         to: "/household-dashboard", 
         label: "Household Dashboard", 
@@ -38,7 +38,7 @@ const ModernDashboard = () => {
       });
     }
     
-    if (user.role === 'business') {
+    if (user && user.role === 'business') {
       links.push({ 
         to: "/business-dashboard", 
         label: "Business Dashboard", 
@@ -48,7 +48,7 @@ const ModernDashboard = () => {
       });
     }
     
-    if (user.role === 'composter') {
+    if (user && user.role === 'composter') {
       links.push({ 
         to: "/composter-dashboard", 
         label: "Composter Dashboard", 
@@ -58,7 +58,7 @@ const ModernDashboard = () => {
       });
     }
     
-    if (user.role === 'buyer') {
+    if (user && user.role === 'buyer') {
       links.push({ 
         to: "/farmer-dashboard", 
         label: "Buyer Dashboard", 
@@ -69,7 +69,7 @@ const ModernDashboard = () => {
     }
     
     // Only show these links to business users
-    if (user.role === 'business') {
+    if (user && user.role === 'business') {
       links.push({ 
         to: "/create-waste-listing", 
         label: "Create Waste Listing", 
@@ -80,7 +80,7 @@ const ModernDashboard = () => {
     }
     
     // Show browse waste listings to all users except household
-    if (user.role !== 'household') {
+    if (user && user.role !== 'household') {
       links.push({ 
         to: "/waste-listings", 
         label: "Browse Waste Listings", 
@@ -91,7 +91,7 @@ const ModernDashboard = () => {
     }
     
     // Only show Compost Marketplace to buyers and composters
-    if (user.role === 'buyer' || user.role === 'composter') {
+    if (user && (user.role === 'buyer' || user.role === 'composter')) {
       links.push({ 
         to: "/compost-marketplace", 
         label: "Compost Marketplace", 
@@ -101,7 +101,7 @@ const ModernDashboard = () => {
       });
     }
     
-    if (user.role === 'buyer') {
+    if (user && user.role === 'buyer') {
       links.push({ 
         to: "/my-orders", 
         label: "My Orders", 
@@ -112,7 +112,7 @@ const ModernDashboard = () => {
     }
     
     // Only show profile to non-household users in main dashboard
-    if (user.role !== 'household') {
+    if (user && user.role !== 'household') {
       links.push({ 
         to: "/profile", 
         label: "Profile", 
