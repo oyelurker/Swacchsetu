@@ -1,6 +1,11 @@
 import sys
 import os
-import razorpay
+try:
+    import razorpay
+    RAZORPAY_AVAILABLE = True
+except ImportError:
+    RAZORPAY_AVAILABLE = False
+    print("Razorpay not available, continuing without payment functionality")
 from dotenv import load_dotenv
 from pydantic import BaseModel
 
@@ -27,7 +32,8 @@ frontend_url = os.getenv("FRONTEND_URL", "http://localhost:5173")
 
 origins = [
     "http://localhost:5173",
-    "http://localhost:3000",  # In case you use a different port
+    "http://localhost:3000",
+    "https://swacchxyz.netlify.app",
     frontend_url,  # For deployed frontend
 ]
 
@@ -37,16 +43,21 @@ app.add_middleware(
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
+    expose_headers=["Access-Control-Allow-Origin"]
 )
 
-# Initialize Razorpay client
-try:
-    razorpay_client = razorpay.Client(
-        auth=(os.getenv("RAZORPAY_KEY_ID"), os.getenv("RAZORPAY_KEY_SECRET"))
-    )
-except Exception as e:
-    print(f"Error initializing Razorpay client: {e}")
-    razorpay_client = None
+# Initialize Razorpay client only if available
+razorpay_client = None
+if RAZORPAY_AVAILABLE:
+    try:
+        razorpay_client = razorpay.Client(
+            auth=(os.getenv("RAZORPAY_KEY_ID"), os.getenv("RAZORPAY_KEY_SECRET"))
+        )
+    except Exception as e:
+        print(f"Error initializing Razorpay client: {e}")
+        razorpay_client = None
+else:
+    print("Razorpay not available, payment functionality disabled")
 
 class RazorpayOrderRequest(BaseModel):
     amount: int
@@ -59,8 +70,8 @@ class PaymentVerificationRequest(BaseModel):
 
 @app.post("/create-razorpay-order")
 def create_razorpay_order(order_request: RazorpayOrderRequest, db: Session = Depends(get_db)):
-    if not razorpay_client:
-        raise HTTPException(status_code=500, detail="Razorpay client not initialized")
+    if not RAZORPAY_AVAILABLE or not razorpay_client:
+        raise HTTPException(status_code=500, detail="Payment functionality not available")
     try:
         order_amount = order_request.amount * 100  # Amount in paise
         order_currency = order_request.currency
@@ -78,8 +89,8 @@ def create_razorpay_order(order_request: RazorpayOrderRequest, db: Session = Dep
 
 @app.post("/verify-payment")
 def verify_payment(verification_request: PaymentVerificationRequest):
-    if not razorpay_client:
-        raise HTTPException(status_code=500, detail="Razorpay client not initialized")
+    if not RAZORPAY_AVAILABLE or not razorpay_client:
+        raise HTTPException(status_code=500, detail="Payment functionality not available")
     try:
         params_dict = {
             'razorpay_order_id': verification_request.razorpay_order_id,
@@ -122,7 +133,21 @@ async def login_for_access_token(form_data: OAuth2PasswordRequestForm = Depends(
 
 @app.get("/users/me/", response_model=schemas.User)
 async def read_users_me(current_user: schemas.User = Depends(auth.get_current_user)):
-    return current_user
+    # Convert the user object to a dictionary explicitly
+    user_dict = {
+        "id": current_user.id,
+        "email": current_user.email,
+        "role": current_user.role,
+        "is_active": current_user.is_active,
+        "location": current_user.location,
+        "address": current_user.address,
+        "city": current_user.city,
+        "state": current_user.state,
+        "country": current_user.country,
+        "latitude": current_user.latitude,
+        "longitude": current_user.longitude
+    }
+    return user_dict
 
 @app.post("/waste-listings/", response_model=schemas.WasteListing)
 def create_waste_listing(
