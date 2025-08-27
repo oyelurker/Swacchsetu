@@ -274,7 +274,7 @@ const Dashboard = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* Upcoming Pickups */}
           <div className="card">
-            <h3 className="text-lg font-semibold text-foreground mb-4">Upcoming Pickups</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4">Upcoming Pickups <span className="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full ml-2">Beta</span></h3>
             <div className="space-y-4">
               <div className="flex items-center justify-between p-3 bg-muted rounded-lg">
                 <div className="flex items-center space-x-3">
@@ -323,7 +323,7 @@ const Dashboard = () => {
 
           {/* Environmental Impact */}
           <div className="card">
-            <h3 className="text-lg font-semibold text-foreground mb-4">Your Environmental Impact</h3>
+            <h3 className="text-lg font-semibold text-foreground mb-4">Your Environmental Impact <span className="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full ml-2">Beta</span></h3>
             <div className="space-y-4">
               <div className="p-4 bg-emerald-50 rounded-lg">
                 <div className="flex justify-between items-center">
@@ -374,6 +374,26 @@ const Dashboard = () => {
                     <p className="text-xl font-bold text-amber-600">3 trees</p>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {/* Beta Notice */}
+        <div className="mt-8 p-4 bg-amber-50 border border-amber-200 rounded-lg">
+          <div className="flex items-start">
+            <div className="flex-shrink-0">
+              <svg className="h-5 w-5 text-amber-600" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+              </svg>
+            </div>
+            <div className="ml-3">
+              <h3 className="text-sm font-medium text-amber-800">Beta Features</h3>
+              <div className="mt-2 text-sm text-amber-700">
+                <p>
+                  Some features like Upcoming Pickups and Environmental Impact metrics are currently in beta and use simulated data. 
+                  We're actively working to connect these features to real data sources.
+                </p>
               </div>
             </div>
           </div>

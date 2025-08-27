@@ -122,7 +122,7 @@ const HouseholdDashboard = () => {
           <div className="card">
             <div className="card-header">
               <div>
-                <h2 className="card-title">Environmental Impact</h2>
+                <h2 className="card-title">Environmental Impact <span className="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full ml-2">Beta</span></h2>
                 <p className="card-description">Your contribution to a sustainable future</p>
               </div>
               <BarChart3 className="h-6 w-6 text-muted-foreground" />
@@ -150,6 +150,9 @@ const HouseholdDashboard = () => {
                 );
               })}
             </div>
+            <div className="mt-4 text-center text-sm text-muted-foreground">
+              <p>Note: These values are simulated for demonstration purposes</p>
+            </div>
           </div>
 
           {/* Additional Navigation */}
@@ -176,7 +179,12 @@ const HouseholdDashboard = () => {
                           <IconComponent className="h-5 w-5 text-emerald-600" />
                         </div>
                         <div>
-                          <h3 className="font-semibold text-foreground group-hover:text-emerald-600">{link.title}</h3>
+                          <h3 className="font-semibold text-foreground group-hover:text-emerald-600">
+                            {link.title}
+                            {link.title === 'Generic Dashboard' && (
+                              <span className="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full ml-2">Beta</span>
+                            )}
+                          </h3>
                           <p className="text-sm text-muted-foreground mt-1">{link.description}</p>
                         </div>
                       </div>
@@ -194,7 +202,7 @@ const HouseholdDashboard = () => {
           <div className="card">
             <div className="card-header">
               <div>
-                <h2 className="card-title">Upcoming Pickups</h2>
+                <h2 className="card-title">Upcoming Pickups <span className="text-xs bg-amber-100 text-amber-800 px-2 py-1 rounded-full ml-2">Beta</span></h2>
                 <p className="card-description">Scheduled waste collections</p>
               </div>
               <Calendar className="h-6 w-6 text-muted-foreground" />
