@@ -276,7 +276,9 @@ def get_recommended_composters(
     db: Session = Depends(get_db),
     current_user: schemas.User = Depends(auth.get_current_user),
 ):
-    return crud.get_recommended_composters(db=db, waste_listing_id=waste_listing_id)
+    composters = crud.get_recommended_composters(db=db, waste_listing_id=waste_listing_id)
+    # Convert to dict and back to ensure proper serialization
+    return [schemas.User(**composter.__dict__) for composter in composters]
 
 @app.get("/global-stats")
 def get_global_stats(db: Session = Depends(get_db)):
