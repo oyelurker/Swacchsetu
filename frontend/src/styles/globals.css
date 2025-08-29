@@ -80,6 +80,14 @@ body {
   color: var(--color-text-dark);
   line-height: var(--line-height-body);
   font-feature-settings: "tnum";
+  margin: 0;
+  padding: 0;
+}
+
+/* Ensure header sticks to top */
+.header {
+  margin: 0 !important;
+  padding: 0 !important;
 }
 
 /* Typography */
@@ -111,6 +119,12 @@ h3 {
   margin-right: auto;
   padding-left: var(--spacing-md);
   padding-right: var(--spacing-md);
+}
+
+/* Ensure app container doesn't add extra spacing */
+#root, #root > div {
+  margin: 0;
+  padding: 0;
 }
 
 /* Cards */

@@ -97,6 +97,8 @@ body {
   background-color: var(--background);
   color: var(--foreground);
   line-height: var(--line-height-relaxed);
+  margin: 0;
+  padding: 0;
 }
 
 /* Container */
@@ -216,6 +218,9 @@ body {
   top: 0;
   z-index: 50;
   backdrop-filter: blur(4px);
+  margin: 0;
+  padding: 0;
+  width: 100%;
 }
 
 .nav-container {

@@ -233,6 +233,21 @@ const NextLevelHomePage = () => {
             </p>
           </motion.div>
           
+          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8 rounded">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <svg className="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div className="ml-3">
+                <p className="text-sm text-yellow-700">
+                  <strong>Maintenance Notice:</strong> We're currently enhancing our features section to provide you with the best experience. Please check back soon!
+                </p>
+              </div>
+            </div>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {features.map((feature, index) => {
               const Icon = feature.icon;
@@ -276,6 +291,21 @@ const NextLevelHomePage = () => {
             </p>
           </motion.div>
           
+          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8 rounded">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <svg className="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div className="ml-3">
+                <p className="text-sm text-yellow-700">
+                  <strong>Maintenance Notice:</strong> We're currently enhancing our "How It Works" section to provide you with clearer instructions. Please check back soon!
+                </p>
+              </div>
+            </div>
+          </div>
+          
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { number: "01", title: "List Your Waste", description: "Households and businesses list their organic waste" },
@@ -302,14 +332,14 @@ const NextLevelHomePage = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-12 md:py-16 lg:py-24 relative">
-        <div className="container">
+      <section className="py-12 md:py-16 lg:py-24 relative bg-gradient-to-r from-primary-forest to-primary-leaf w-full">
+        <div className="container mx-auto px-4">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1 }}
             viewport={{ once: true }}
-            className="bg-gradient-to-r from-primary-forest to-primary-leaf rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
+            className="rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
           >
             <div className="absolute inset-0 opacity-10">
               <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white to-transparent"></div>
@@ -338,6 +368,50 @@ const NextLevelHomePage = () => {
               </Link>
             </div>
           </motion.div>
+        </div>
+      </section>
+      
+      {/* Impact Section */}
+      <section id="impact" className="py-12 md:py-16 lg:py-24 relative bg-card">
+        <div className="container">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 bg-gradient-to-r from-primary-forest to-primary-leaf bg-clip-text text-transparent">
+              Our Environmental Impact
+            </h2>
+            <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
+              See how we're making a difference in waste management and sustainability
+            </p>
+          </motion.div>
+          
+          <div className="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-8 rounded">
+            <div className="flex">
+              <div className="flex-shrink-0">
+                <svg className="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                  <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                </svg>
+              </div>
+              <div className="ml-3">
+                <p className="text-sm text-yellow-700">
+                  <strong>Maintenance Notice:</strong> We're currently enhancing our impact section with more detailed metrics and success stories. Please check back soon!
+                </p>
+              </div>
+            </div>
+          </div>
+          
+          <div className="text-center py-12">
+            <Leaf className="h-16 w-16 text-primary mx-auto mb-6" />
+            <h3 className="text-2xl font-bold text-dark mb-4">Committed to Sustainability</h3>
+            <p className="text-muted-foreground max-w-2xl mx-auto">
+              Our platform is dedicated to creating a sustainable future by connecting waste generators with composters and farmers. 
+              We're continuously working to improve our impact metrics and provide more transparency about our environmental contributions.
+            </p>
+          </div>
         </div>
       </section>
     </div>

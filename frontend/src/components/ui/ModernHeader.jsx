@@ -105,7 +105,7 @@ const ModernHeader = () => {
   };
 
   return (
-    <header className={`header ${scrolled ? 'shadow-lg' : ''}`}>
+    <header className={`header ${scrolled ? 'shadow-lg' : ''}`} style={{ margin: 0, padding: 0 }}>
       <div className="nav-container">
         {/* Logo */}
         <div className="flex-shrink-0">
