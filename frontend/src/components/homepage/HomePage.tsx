@@ -147,7 +147,7 @@ const HomePage = () => {
               boxShadow: '0 10px 25px rgba(0, 0, 0, 0.1)'
             }}>
               <iframe
-                src="https://www.youtube.com/embed/dQw4w9WgXcQ?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1&autoplay=0"
+                src="https://www.youtube.com/embed/4FIA3KJ4fxc?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1&autoplay=0"
                 title="SwacchSetu Smart Bin Demo"
                 frameBorder="0"
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
