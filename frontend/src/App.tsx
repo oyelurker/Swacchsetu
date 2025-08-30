@@ -23,15 +23,14 @@ import FeaturesPage from './pages/FeaturesPage';
 import HowItWorksPage from './pages/HowItWorksPage';
 import ImpactPage from './pages/ImpactPage';
 import './styles/globals.css';
+import './styles/winning-theme.css';
 
 function App() {
   return (
     <Router>
       <AuthProvider>
         <div className="flex flex-col min-h-screen" style={{ margin: 0, padding: 0 }}>
-          <div className="w-full">
-            <ModernHeader />
-          </div>
+          <ModernHeader />
           <main className="flex-1">
             <Routes>
               <Route path="/" element={<NextLevelHomePage />} />

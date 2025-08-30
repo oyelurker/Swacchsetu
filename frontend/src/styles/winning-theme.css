@@ -216,7 +216,7 @@ body {
   border-bottom: 1px solid var(--border);
   position: sticky;
   top: 0;
-  z-index: 50;
+  z-index: 1000;
   backdrop-filter: blur(4px);
   margin: 0;
   padding: 0;

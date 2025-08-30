@@ -86,8 +86,12 @@ body {
 
 /* Ensure header sticks to top */
 .header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   margin: 0 !important;
   padding: 0 !important;
+  width: 100%;
 }
 
 /* Typography */
