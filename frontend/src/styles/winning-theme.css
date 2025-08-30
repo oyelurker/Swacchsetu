@@ -141,6 +141,7 @@ body {
   border: 1px solid transparent;
   padding: var(--spacing-2) var(--spacing-4);
   white-space: nowrap;
+  text-decoration: none;
 }
 
 .btn:focus-visible {
@@ -217,7 +218,7 @@ body {
   position: sticky;
   top: 0;
   z-index: 1000;
-  backdrop-filter: blur(4px);
+  backdrop-filter: blur(10px);
   margin: 0;
   padding: 0;
   width: 100%;
@@ -261,11 +262,13 @@ body {
   text-decoration: none;
   color: var(--foreground);
   font-weight: var(--font-weight-medium);
-  transition: color var(--transition-fast);
+  transition: all var(--transition-fast);
 }
 
 .nav-links a:hover {
   color: var(--primary);
+  background-color: rgba(76, 175, 80, 0.1);
+  border-radius: var(--radius-sm);
 }
 
 .nav-auth {
@@ -545,6 +548,10 @@ body {
 
 .bg-error {
   background-color: var(--error);
+}
+
+.bg-primary\/10 {
+  background-color: rgba(76, 175, 80, 0.1);
 }
 
 .border {

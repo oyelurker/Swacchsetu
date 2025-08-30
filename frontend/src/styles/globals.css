@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* SwacchSetu Design System */
 :root {
   /* Colors */
@@ -92,6 +94,7 @@ body {
   margin: 0 !important;
   padding: 0 !important;
   width: 100%;
+  backdrop-filter: blur(10px);
 }
 
 /* Typography */

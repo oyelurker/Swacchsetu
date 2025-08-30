@@ -105,7 +105,7 @@ const ModernHeader = () => {
   };
 
   return (
-    <header className={`header ${scrolled ? 'shadow-lg' : ''}`} style={{ margin: 0, padding: 0 }}>
+    <header className={`header ${scrolled ? 'shadow-lg bg-white/90 backdrop-blur-md' : 'bg-white'} transition-all duration-300`} style={{ margin: 0, padding: 0 }}>
       <div className="nav-container">
         {/* Logo */}
         <div className="flex-shrink-0">
@@ -113,21 +113,21 @@ const ModernHeader = () => {
             <div className="nav-logo-icon" aria-hidden="true">
               <Leaf size={24} />
             </div>
-            <span>SwacchSetu</span>
+            <span className="font-bold text-xl">SwacchSetu</span>
           </Link>
         </div>
 
         {/* Desktop Navigation */}
         <nav aria-label="Main Navigation" className="flex-1 hidden md:flex justify-center">
           {isAuthenticated && user ? (
-            <ul className="nav-links flex gap-8" role="menubar">
+            <ul className="nav-links flex gap-6" role="menubar">
               <li role="none">
                 <Link 
                   to={user ? getUserDashboardLink(user.role) : '/'} 
                   onClick={closeMobileMenu} 
                   role="menuitem" 
                   tabIndex="0"
-                  className="hover:text-primary transition-colors duration-300 py-2 px-1"
+                  className="hover:text-primary transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-primary/10"
                 >
                   Dashboard
                 </Link>
@@ -139,7 +139,7 @@ const ModernHeader = () => {
                     onClick={closeMobileMenu} 
                     role="menuitem" 
                     tabIndex="0"
-                    className="hover:text-primary transition-colors duration-300 py-2 px-1"
+                    className="hover:text-primary transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-primary/10"
                   >
                     {link.name}
                   </Link>
@@ -147,13 +147,13 @@ const ModernHeader = () => {
               ))}
             </ul>
           ) : (
-            <ul className="nav-links flex gap-8" role="menubar">
+            <ul className="nav-links flex gap-6" role="menubar">
               <li role="none">
                 <a 
                   href="#features" 
                   role="menuitem" 
                   tabIndex="0"
-                  className="hover:text-primary transition-colors duration-300 py-2 px-1"
+                  className="hover:text-primary transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-primary/10"
                 >
                   Features
                 </a>
@@ -163,7 +163,7 @@ const ModernHeader = () => {
                   href="#how-it-works" 
                   role="menuitem" 
                   tabIndex="0"
-                  className="hover:text-primary transition-colors duration-300 py-2 px-1"
+                  className="hover:text-primary transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-primary/10"
                 >
                   How It Works
                 </a>
@@ -173,7 +173,7 @@ const ModernHeader = () => {
                   href="#impact" 
                   role="menuitem" 
                   tabIndex="0"
-                  className="hover:text-primary transition-colors duration-300 py-2 px-1"
+                  className="hover:text-primary transition-colors duration-300 py-2 px-3 rounded-lg hover:bg-primary/10"
                 >
                   Impact
                 </a>
@@ -183,20 +183,20 @@ const ModernHeader = () => {
         </nav>
 
         {/* Auth Buttons */}
-        <div className="hidden md:flex items-center gap-4">
+        <div className="hidden md:flex items-center gap-3">
           {isAuthenticated && user ? (
-            <div className="nav-auth flex items-center gap-4">
-              <div className="flex items-center gap-3 bg-card p-2 rounded-full border border-border shadow-sm">
-                <div className="p-2 rounded-full bg-gradient-primary">
+            <div className="nav-auth flex items-center gap-3">
+              <div className="flex items-center gap-2 bg-primary/10 p-2 rounded-full border border-primary/20">
+                <div className="p-1.5 rounded-full bg-primary text-white">
                   {user && getRoleIcon(user.role)}
                 </div>
-                <span className="text-sm font-medium capitalize">
+                <span className="text-sm font-medium capitalize pr-2">
                   {user && (user.role === 'buyer' ? 'Buyer' : user.role)}
                 </span>
               </div>
               <button 
                 onClick={logout} 
-                className="btn btn-outline flex items-center gap-2"
+                className="btn btn-outline flex items-center gap-2 text-sm py-2 px-3"
                 aria-label="Logout from account"
               >
                 <LogOut size={16} aria-hidden="true" />
@@ -204,9 +204,9 @@ const ModernHeader = () => {
               </button>
             </div>
           ) : (
-            <div className="nav-auth flex items-center gap-3">
-              <Link to="/login" className="btn btn-outline">Sign In</Link>
-              <Link to="/register" className="btn btn-primary">Get Started</Link>
+            <div className="nav-auth flex items-center gap-2">
+              <Link to="/login" className="btn btn-outline text-sm py-2 px-4">Sign In</Link>
+              <Link to="/register" className="btn btn-primary text-sm py-2 px-4">Get Started</Link>
             </div>
           )}
         </div>
@@ -214,7 +214,7 @@ const ModernHeader = () => {
         {/* Mobile menu button */}
         <button 
           onClick={toggleMobileMenu} 
-          className="nav-mobile-toggle md:hidden"
+          className="nav-mobile-toggle md:hidden p-2 rounded-lg hover:bg-gray-100"
           aria-label="Toggle navigation menu"
           aria-expanded={mobileMenuOpen}
           aria-controls="mobile-menu"
@@ -232,13 +232,13 @@ const ModernHeader = () => {
       >
           {isAuthenticated && user ? (
             <>
-              <nav className="nav-mobile-links space-y-3 py-4" aria-label="Mobile Navigation">
+              <nav className="nav-mobile-links space-y-2 py-4" aria-label="Mobile Navigation">
                 <Link 
                   to={user ? getUserDashboardLink(user.role) : '/'} 
                   onClick={closeMobileMenu}
                   tabIndex="0"
                   role="menuitem"
-                  className="block py-3 px-4 rounded-lg bg-card border border-border hover:bg-card/80 transition-colors"
+                  className="block py-3 px-4 rounded-lg bg-card border border-border hover:bg-primary/10 transition-colors"
                 >
                   Dashboard
                 </Link>
@@ -249,7 +249,7 @@ const ModernHeader = () => {
                     onClick={closeMobileMenu}
                     tabIndex="0"
                     role="menuitem"
-                    className="block py-3 px-4 rounded-lg bg-card border border-border hover:bg-card/80 transition-colors"
+                    className="block py-3 px-4 rounded-lg bg-card border border-border hover:bg-primary/10 transition-colors"
                   >
                     <div className="flex items-center gap-2">
                       {link.icon && <span aria-hidden="true">{link.icon}</span>}
@@ -258,21 +258,21 @@ const ModernHeader = () => {
                   </Link>
                 ))}
               </nav>
-              <div className="nav-mobile-auth mt-6 py-4">
-                <div className="py-3 border-b border-border">
+              <div className="nav-mobile-auth mt-4 py-4 border-t border-border">
+                <div className="py-3">
                   <div className="flex items-center gap-3 mb-2">
-                    <div className="p-2 rounded-full bg-gradient-primary">
+                    <div className="p-2 rounded-full bg-primary text-white">
                       {user && getRoleIcon(user.role)}
                     </div>
                     <span className="text-sm font-medium capitalize">
                       {user && (user.role === 'buyer' ? 'Buyer' : user.role)}
                     </span>
                   </div>
-                  <span className="text-sm">Welcome, {user?.email || 'Guest'}</span>
+                  <span className="text-sm text-gray-600">Welcome, {user?.email || 'Guest'}</span>
                 </div>
                 <button 
                   onClick={() => { logout(); closeMobileMenu(); }}
-                  className="btn btn-outline w-full justify-center flex items-center gap-2 mt-4"
+                  className="btn btn-outline w-full justify-center flex items-center gap-2 mt-2"
                   aria-label="Logout from account"
                 >
                   <LogOut size={16} aria-hidden="true" />
@@ -281,13 +281,13 @@ const ModernHeader = () => {
               </div>
             </>
           ) : (
-            <nav className="nav-mobile-links space-y-3 py-4" aria-label="Mobile Navigation">
+            <nav className="nav-mobile-links space-y-2 py-4" aria-label="Mobile Navigation">
               <a 
                 href="#features" 
                 onClick={closeMobileMenu} 
                 tabIndex="0" 
                 role="menuitem"
-                className="block py-3 px-4 rounded-lg bg-card border border-border hover:bg-card/80 transition-colors"
+                className="block py-3 px-4 rounded-lg bg-card border border-border hover:bg-primary/10 transition-colors"
               >
                 Features
               </a>
@@ -296,7 +296,7 @@ const ModernHeader = () => {
                 onClick={closeMobileMenu} 
                 tabIndex="0" 
                 role="menuitem"
-                className="block py-3 px-4 rounded-lg bg-card border border-border hover:bg-card/80 transition-colors"
+                className="block py-3 px-4 rounded-lg bg-card border border-border hover:bg-primary/10 transition-colors"
               >
                 How It Works
               </a>
@@ -305,7 +305,7 @@ const ModernHeader = () => {
                 onClick={closeMobileMenu} 
                 tabIndex="0" 
                 role="menuitem"
-                className="block py-3 px-4 rounded-lg bg-card border border-border hover:bg-card/80 transition-colors"
+                className="block py-3 px-4 rounded-lg bg-card border border-border hover:bg-primary/10 transition-colors"
               >
                 Impact
               </a>
@@ -315,7 +315,7 @@ const ModernHeader = () => {
                   onClick={closeMobileMenu} 
                   tabIndex="0" 
                   role="menuitem"
-                  className="block py-3 px-4 rounded-lg bg-card border border-border hover:bg-card/80 transition-colors text-center"
+                  className="block py-3 px-4 rounded-lg bg-card border border-border hover:bg-gray-50 transition-colors text-center"
                 >
                   Sign In
                 </Link>
