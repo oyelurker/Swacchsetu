@@ -93,8 +93,14 @@ body {
   z-index: 1000;
   margin: 0 !important;
   padding: 0 !important;
-  width: 100%;
-  backdrop-filter: blur(10px);
+  background: linear-gradient(135deg, rgba(28, 124, 84, 0.15) 0%, rgba(55, 178, 77, 0.1) 100%);
+  border-bottom: 1px solid rgba(28, 124, 84, 0.2);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+}
+
+.header:hover {
+  background: linear-gradient(135deg, rgba(28, 124, 84, 0.2) 0%, rgba(55, 178, 77, 0.15) 100%);
 }
 
 /* Typography */

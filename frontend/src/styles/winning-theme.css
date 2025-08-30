@@ -213,15 +213,20 @@ body {
 
 /* Header */
 .header {
-  background-color: var(--background);
-  border-bottom: 1px solid var(--border);
+  background: linear-gradient(135deg, rgba(28, 124, 84, 0.15) 0%, rgba(55, 178, 77, 0.1) 100%);
+  border-bottom: 1px solid rgba(28, 124, 84, 0.2);
   position: sticky;
   top: 0;
   z-index: 1000;
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(12px);
   margin: 0;
   padding: 0;
   width: 100%;
+  transition: all 0.3s ease;
+}
+
+.header:hover {
+  background: linear-gradient(135deg, rgba(28, 124, 84, 0.2) 0%, rgba(55, 178, 77, 0.15) 100%);
 }
 
 .nav-container {

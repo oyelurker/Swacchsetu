@@ -330,46 +330,6 @@ const NextLevelHomePage = () => {
           </div>
         </div>
       </section>
-
-      {/* CTA Section */}
-      <section className="py-12 md:py-16 lg:py-24 relative bg-gradient-to-r from-primary-forest to-primary-leaf w-full">
-        <div className="container mx-auto px-4">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-            className="rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
-          >
-            <div className="absolute inset-0 opacity-10">
-              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white to-transparent"></div>
-            </div>
-            
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 text-white">
-              Ready to Transform Waste?
-            </h2>
-            <p className="text-lg md:text-xl text-white/90 mb-10 max-w-3xl mx-auto">
-              Join thousands who are already contributing to a circular waste economy. Start your sustainable journey today.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center">
-              <Link 
-                to="/register" 
-                className="btn btn-accent btn-lg px-10 py-4 text-xl group"
-              >
-                Create Your Account
-                <ArrowRight size={28} className="ml-3 group-hover:translate-x-2 transition-transform" />
-              </Link>
-              <a 
-                href="#impact" 
-                className="btn btn-outline btn-lg bg-white/10 text-white border-white/20 hover:bg-white/20 px-10 py-4 text-xl"
-              >
-                View Our Impact
-              </a>
-            </div>
-          </motion.div>
-        </div>
-      </section>
       
       {/* Impact Section */}
       <section id="impact" className="py-12 md:py-16 lg:py-24 relative bg-card">
@@ -412,6 +372,46 @@ const NextLevelHomePage = () => {
               We're continuously working to improve our impact metrics and provide more transparency about our environmental contributions.
             </p>
           </div>
+        </div>
+      </section>
+      
+      {/* CTA Section */}
+      <section className="py-12 md:py-16 lg:py-24 relative bg-gradient-to-r from-primary-forest to-primary-leaf w-full">
+        <div className="container mx-auto px-4">
+          <motion.div
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="rounded-2xl p-8 md:p-12 text-center relative overflow-hidden"
+          >
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white to-transparent"></div>
+            </div>
+            
+            <h2 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-6 text-white">
+              Ready to Transform Waste?
+            </h2>
+            <p className="text-lg md:text-xl text-white/90 mb-10 max-w-3xl mx-auto">
+              Join thousands who are already contributing to a circular waste economy. Start your sustainable journey today.
+            </p>
+            
+            <div className="flex flex-col sm:flex-row gap-6 justify-center">
+              <Link 
+                to="/register" 
+                className="btn btn-accent btn-lg px-10 py-4 text-xl group"
+              >
+                Create Your Account
+                <ArrowRight size={28} className="ml-3 group-hover:translate-x-2 transition-transform" />
+              </Link>
+              <a 
+                href="#impact" 
+                className="btn btn-outline btn-lg bg-white/10 text-white border-white/20 hover:bg-white/20 px-10 py-4 text-xl"
+              >
+                View Our Impact
+              </a>
+            </div>
+          </motion.div>
         </div>
       </section>
     </div>
