@@ -122,9 +122,9 @@ const NextLevelHomePage = () => {
                   {isAuthenticated ? "Go to Dashboard" : "Get Started Today"}
                   <ArrowRight size={24} className="group-hover:translate-x-2 transition-transform" />
                 </Link>
-                <Link to="#features" className="btn btn-outline btn-lg px-8 py-4 text-lg border-2">
+                <a href="#features" className="btn btn-outline btn-lg px-8 py-4 text-lg border-2">
                   Learn How It Works
-                </Link>
+                </a>
               </motion.div>
             </motion.div>
             
@@ -360,12 +360,12 @@ const NextLevelHomePage = () => {
                 Create Your Account
                 <ArrowRight size={28} className="ml-3 group-hover:translate-x-2 transition-transform" />
               </Link>
-              <Link 
-                to="#impact" 
+              <a 
+                href="#impact" 
                 className="btn btn-outline btn-lg bg-white/10 text-white border-white/20 hover:bg-white/20 px-10 py-4 text-xl"
               >
                 View Our Impact
-              </Link>
+              </a>
             </div>
           </motion.div>
         </div>

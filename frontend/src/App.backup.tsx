@@ -95,12 +95,12 @@ const HomePage = () => {
                   {isAuthenticated ? "Go to Dashboard" : "Get Started Today"}
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Link>
-                <Link 
-                  to="#how-it-works" 
+                <a 
+                  href="#how-it-works" 
                   className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border bg-background shadow-xs hover:bg-accent hover:text-accent-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 h-10 rounded-md px-6 has-[>svg]:px-4"
                 >
                   Learn How It Works
-                </Link>
+                </a>
               </div>
             </div>
             <div className="relative">
@@ -227,12 +227,12 @@ const HomePage = () => {
               Create Your Account
               <ArrowRight className="ml-2 h-5 w-5" />
             </Link>
-            <Link 
-              to="#impact" 
+            <a 
+              href="#impact" 
               className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary h-10 rounded-md px-6 has-[>svg]:px-4 border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary bg-transparent"
             >
               View Our Impact
-            </Link>
+            </a>
           </div>
         </div>
       </section>

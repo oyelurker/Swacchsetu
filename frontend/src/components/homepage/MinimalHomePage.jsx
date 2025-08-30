@@ -94,9 +94,9 @@ const MinimalHomePage = () => {
                 {isAuthenticated ? "Go to Dashboard" : "Get Started"}
                 <ArrowRight size={20} />
               </Link>
-              <Link to="#features" className="btn btn-outline px-8 py-3 text-lg">
+              <a href="#features" className="btn btn-outline px-8 py-3 text-lg">
                 Learn More
-              </Link>
+              </a>
             </div>
           </div>
         </div>

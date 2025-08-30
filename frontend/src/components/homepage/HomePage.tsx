@@ -131,9 +131,9 @@ const HomePage = () => {
                 {isAuthenticated ? "Go to Dashboard" : "Get Started Today"}
                 <ArrowRight size={20} />
               </Link>
-              <Link to="#features" className="btn btn-outline btn-lg">
+              <a href="#features" className="btn btn-outline btn-lg">
                 Learn How It Works
-              </Link>
+              </a>
             </div>
           </div>
           <div className="hero-image animate-on-scroll">
@@ -250,9 +250,9 @@ const HomePage = () => {
               Create Your Account
               <ArrowRight size={20} />
             </Link>
-            <Link to="#impact" className="btn btn-cta-secondary btn-lg">
+            <a href="#impact" className="btn btn-cta-secondary btn-lg">
               View Our Impact
-            </Link>
+            </a>
           </div>
         </div>
       </section>

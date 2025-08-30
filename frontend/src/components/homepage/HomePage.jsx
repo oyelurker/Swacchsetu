@@ -180,9 +180,9 @@ const HomePage = () => {
                   {isAuthenticated ? "Go to Dashboard" : "Get Started Today"}
                   <ArrowRight size={20} />
                 </Link>
-                <Link to="#how-it-works" className="btn btn-ghost btn-lg">
+                <a href="#how-it-works" className="btn btn-ghost btn-lg">
                   Learn How It Works
-                </Link>
+                </a>
               </div>
             </div>
             <div className="relative">
@@ -395,10 +395,10 @@ const HomePage = () => {
                 <div className="text-sm text-muted mb-2">{article.date}</div>
                 <h3 className="text-xl font-semibold mb-3 text-dark">{article.title}</h3>
                 <p className="text-muted mb-4">{article.excerpt}</p>
-                <Link to="#" className="text-primary font-medium flex items-center gap-1">
+                <a href="#news" className="text-primary font-medium flex items-center gap-1">
                   Read more
                   <ArrowRight size={16} />
-                </Link>
+                </a>
               </div>
             ))}
           </div>
@@ -421,9 +421,9 @@ const HomePage = () => {
                 Create Your Account
                 <ArrowRight size={20} />
               </Link>
-              <Link to="#impact" className="btn btn-ghost btn-lg text-white border-white hover:bg-white/10">
+              <a href="#impact" className="btn btn-ghost btn-lg text-white border-white hover:bg-white/10">
                 View Our Impact
-              </Link>
+              </a>
             </div>
           </div>
         </div>
