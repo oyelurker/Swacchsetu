@@ -1,0 +1,34 @@
+/* Custom cursor styles */
+#custom-cursor {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: rgba(76, 175, 80, 0.7);
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  transform: translate(-50%, -50%);
+  box-shadow: 0 0 10px 5px rgba(76, 175, 80, 0.5);
+  transition: width 0.2s ease, height 0.2s ease, background-color 0.2s ease, box-shadow 0.2s ease;
+  top: 0;
+  left: 0;
+}
+
+#custom-cursor.focused {
+  width: 30px;
+  height: 30px;
+  background-color: rgba(76, 175, 80, 0.9);
+  box-shadow: 0 0 15px 8px rgba(76, 175, 80, 0.7);
+}
+
+#custom-cursor.clicked {
+  width: 15px;
+  height: 15px;
+  background-color: rgba(76, 175, 80, 1);
+  box-shadow: 0 0 20px 10px rgba(76, 175, 80, 0.9);
+}
+
+/* Hide default cursor */
+* {
+  cursor: none !important;
+}
