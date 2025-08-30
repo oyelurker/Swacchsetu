@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import Register from './pages/Register';
@@ -22,13 +22,26 @@ import ComponentDemo from './pages/ComponentDemo';
 import FeaturesPage from './pages/FeaturesPage';
 import HowItWorksPage from './pages/HowItWorksPage';
 import ImpactPage from './pages/ImpactPage';
+import Preloader from './components/Preloader';
+import CustomCursor from './components/CustomCursor';
 import './styles/globals.css';
 import './styles/winning-theme.css';
 
 function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
+  const handleLoadingComplete = () => {
+    setIsLoading(false);
+  };
+
+  if (isLoading) {
+    return <Preloader onLoadingComplete={handleLoadingComplete} />;
+  }
+
   return (
     <Router>
       <AuthProvider>
+        <CustomCursor />
         <div className="flex flex-col min-h-screen" style={{ margin: 0, padding: 0 }}>
           <ModernHeader />
           <main className="flex-1">
