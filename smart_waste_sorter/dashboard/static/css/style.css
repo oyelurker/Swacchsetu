@@ -1,6 +1,0 @@
-body { font-family: Arial; background: #f0f0f0; }
-.container { max-width: 1000px; margin: 20px auto; padding: 20px; }
-.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-.card { background: white; padding: 20px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }
-.card h2 { margin-top: 0; color: #333; }
-.status { grid-column: span 3; }
